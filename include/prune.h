@@ -21,7 +21,26 @@
 #define PRUNE_H
 
 #include <stdio.h>
+#include <stdlib.h>
+
+typedef struct pr_program {
+	const char *name;
+} pr_program_t;
+
+typedef struct pr_argument {
+	const char *name;
+} pr_argument_t;
+
+typedef struct pr_command_line {
+	pr_program_t program;
+	int argument_count;
+	pr_argument_t *arguments;
+} pr_command_line_t;
 
 int main(int argc, char *argv[]);
+
+pr_command_line_t pr_parse_command_line(int argc, char *argv[]);
+
+int pr_main(pr_command_line_t *command_line);
 
 #endif
